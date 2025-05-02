@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Coca Cola",
+    "description": "900 ml",
+    "price": 21.5,
+    "code": "RC900",
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "title": "Sabritas",
+    "description": "50 g",
+    "price": 13,
+    "code": "S50",
+    "stock": 5
+  },
+  {
+    "id": 3,
+    "title": "Coca Cola",
+    "description": "900 ml",
+    "price": 21.5,
+    "code": "RC900",
+    "stock": 10
+  }
+]
