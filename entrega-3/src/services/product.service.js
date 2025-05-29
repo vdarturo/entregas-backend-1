@@ -2,8 +2,8 @@ import { productModel } from "../models/product.model.js";
 
 class ProductService{
     
-    async getAll(){
-        return await productModel.find();
+    async getAll(options){
+        return await productModel.paginate({}, options);
     }
 
     async getById(id){

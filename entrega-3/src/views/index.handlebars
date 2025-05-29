@@ -1,0 +1,18 @@
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl px-4 py-6 sm:px-6  lg:max-w-7xl lg:px-8">
+    <h2 class="text-2xl font-extrabold text-gray-800 ">
+        Productos
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+        {{#each products.docs}}
+          <a href="/product/{{_id}}">
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <img src="{{thumbnails}}" alt="Producto 1" class="w-fit h-40 object-cover rounded-md inset-0 m-auto">
+                <h3 class="mt-4 text-lg font-semibold">{{title}}</h3>
+                <p class="text-gray-500">${{price}}</p>
+            </div>
+          </a>
+        {{/each}}
+    </div>
+  </div>
+</div>

@@ -2,7 +2,13 @@ import productService from "../services/product.service.js";
 
 export async function getAllProducts(req, res){
     try {
-        const products =  await productService.getAll();
+        //const limit = req.query.limit || 10;
+        const { limit, page } = req.query; 
+        const options = {
+            page: page || 1,
+            limit: limit || 10
+        };
+        const products =  await productService.getAll(options);
         res.status(200).json(products);
     } catch (error) {
         res.status(500).json({message: error.message});
@@ -53,7 +59,7 @@ export async function updateProduct(req,res){
 export async function deleteProduct(req,res){
     try {
         const {id} = req.params;
-        const deleteProduct = await productService.deleteOne(id);
+        await productService.deleteOne(id);
         res.status(200).json({message:'Producto eliminado'});
     } catch (error) {
         res.status(500).json({message: error.message});
