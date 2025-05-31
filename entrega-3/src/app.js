@@ -5,6 +5,7 @@ import {dirname} from "path"
 import { fileURLToPath } from "url"
 import handlebars from 'express-handlebars';
 import productRouter from './routes/products.routes.js';
+import cartRouter from './routes/carts.routes.js';
 import viewRouter from './routes/views.routes.js';
 
 
@@ -22,6 +23,7 @@ app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/views`);
 
 app.use('/api/products/', productRouter);
+app.use('/api/carts/', cartRouter);
 app.use('/', viewRouter);
 
 mongoose.connect(`mongodb+srv://${USER_DB}:${PASWORD_DB}@cluster0.ojdfdmt.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0`)
