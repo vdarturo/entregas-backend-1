@@ -4,17 +4,12 @@
         {{#each cart.products}}
             <div class="flex items-center justify-between bg-gray-50 p-4 rounded-lg">
                 <div class="flex items-center space-x-4">
-                    <img src="https://via.placeholder.com/80" class="rounded-lg">
+                    <img src="{{thumbnails}}" class="w-fit h-10 object-cover rounded-md inset-0 m-auto">
                     <div>
-                        <h2 class="text-lg">{{product}}</h2>
+                        <h2 class="text-lg">{{title}}</h2>
                     </div>
                     <div>
                         <p class="text-gray-600">${{price}}</p>
-                    </div>
-                    <div class="flex items-center space-x-4">
-                        <button class="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">➖</button>
-                        <span class="text-lg">{{quantity}}</span>
-                        <button class="px-3 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">➕</button>
                     </div>
                 </div>
                 <button class="text-red-500 hover:text-red-600">🗑️</button>
@@ -23,7 +18,7 @@
     </div>
     <div class="mt-6 flex justify-between items-center text-lg font-semibold">
         <span>Total:</span>
-        <span class="text-green-500">$44.98</span>
+        <span class="text-green-500">${{cart.total}}</span>
     </div>
     <div class="mt-6 flex space-x-4">
         <button class="w-1/2 px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600">

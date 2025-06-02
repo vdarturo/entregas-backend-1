@@ -16,21 +16,23 @@ class CartService{
 
     async getById(cid){
         try{
-            return await cartModel.findById(cid);
+            return await cartModel.findById(cid).populate("products");
         } catch (error) {
             console.error('Error al leer un carrito de compras: ', error);
             throw error;
         }
     }
 
-    async addProduct(cart, pid, quantity, price){
+    async addProduct(cart, product){
         try{
-            cart.products.push({product: pid, quantity: quantity, price: price});
-            
-            cart.total = 0;
-            cart.products.forEach(function(prod){
-                cart.total += (prod.quantity*prod.price);
+            cart.products.push(product);
+
+            let total = 0
+            cart.products.forEach(function(product) {
+                total += product.price 
             });
+
+            cart.total = total;
             
             return await cartModel.updateOne({_id: cart._id}, cart);
         } catch (error) {
