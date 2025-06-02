@@ -8,7 +8,7 @@ viewRouter.get('/', async (req, res) => {
         const { limit, page } = req.query;
         const result = await fetch(`http://localhost:${PORT}/api/products?limit=${limit}&page=${page}`);
         const products = await result.json();
-        res.render("index", {products, PORT});
+        res.render("index", {products, port: PORT});
     } catch (error) {
         console.log(error)
         res.status(500).json({error: 'Error al obtener productos'})
@@ -32,7 +32,7 @@ viewRouter.get('/carts/:id', async (req, res) => {
         const { id } = req.params
         const result = await fetch(`http://localhost:${PORT}/api/carts/${id}`);
         const cart = await result.json();
-        res.render("cart", {cart});
+        res.render("cart", {cart, port: PORT});
     } catch (error) {
         console.log(error)
         res.status(500).json({error: 'Error al obtener el detalle del carrito de compras'})

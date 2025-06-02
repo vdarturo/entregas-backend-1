@@ -52,3 +52,17 @@ export async function deleteCart(req,res){
         res.status(500).json({message: error.message});
     }
 }
+
+export async function removeProduct(req,res){
+    try {
+        const {cid, pid} = req.params;
+
+        const cart =  await cartService.getById(cid);
+        if(!cart) res.status(404).json({message:'Carrito de compras no encontrado'});
+
+        await cartService.removeProduct(cart, pid);
+        res.status(200).json({message:'Se removio del producto del carrito de compras'});
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}

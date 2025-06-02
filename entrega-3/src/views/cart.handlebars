@@ -12,7 +12,7 @@
                         <p class="text-gray-600">${{price}}</p>
                     </div>
                 </div>
-                <button class="text-red-500 hover:text-red-600">🗑️</button>
+                <button class="text-red-500 hover:text-red-600" onclick="removeProduct('{{_id}}')">🗑️</button>
             </div>
         {{/each}}
     </div>
@@ -21,11 +21,12 @@
         <span class="text-green-500">${{cart.total}}</span>
     </div>
     <div class="mt-6 flex space-x-4">
-        <button class="w-1/2 px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600">
+        <button class="w-1/2 px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600" onclick="cancelPurchase()">
             Cancelar Compra
         </button>
-        <button class="w-1/2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600">
+        <button class="w-1/2 px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600" onclick="buyPurchase()">
             Finalizar Compra
         </button>
     </div>
 </div>
+<input type="hidden" id="port" value="{{port}}">

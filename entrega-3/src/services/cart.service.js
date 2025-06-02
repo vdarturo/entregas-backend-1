@@ -49,6 +49,25 @@ class CartService{
             throw error;
         }
     }
+
+    async removeProduct(cart, pid){
+        try{
+            let total = 0
+            
+            const products = cart.products.filter(product => product._id != pid);
+            
+            cart.products = products;
+            cart.products.forEach(function(product) {
+                total += product.price 
+            });
+
+            cart.total = total;
+            return await cartModel.updateOne({_id: cart._id}, cart);
+        } catch (error) {
+            console.error('Error al remover un producto del carrito de compras:', error);
+            throw error;
+        }
+    }
 }
 
 export default new CartService;
