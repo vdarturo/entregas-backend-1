@@ -25,6 +25,7 @@ export async function getCartById(req, res){
 export async function addProductToCart(req, res){
     try {
         const {cid, pid} = req.params;
+        const {quantity} = req.body;
 
         const cart =  await cartService.getById(cid);
         if(!cart) res.status(404).json({message:'Carrito de compras no encontrado'});
@@ -32,7 +33,7 @@ export async function addProductToCart(req, res){
         const product =  await productService.getById(pid);
         if(!product) res.status(404).json({message:'Producto no encontrado'});
 
-        await cartService.addProduct(cart, product);
+        await cartService.addProduct(cart, product, quantity);
         res.status(200).json({message:'Product agregado correctamente al carrito de compras'});
     } catch (error) {
         res.status(500).json({message: error.message});

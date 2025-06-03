@@ -1,5 +1,6 @@
 async function addProductToCart(pid){
     const PORT = document.getElementById("port").value;
+    const quantity = parseInt(document.getElementById("quantity-input").value);
     let cartId = localStorage.getItem('cart-id');
     
     if(!cartId){
@@ -9,9 +10,19 @@ async function addProductToCart(pid){
         localStorage.setItem('cart-id', cartId);
     }
 
-    await fetch(`http://localhost:${PORT}/api/carts/${cartId}/product/${pid}`, {method: 'POST'});
+    data = { quantity: quantity };
+    await fetch(
+        `http://localhost:${PORT}/api/carts/${cartId}/product/${pid}`, 
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+    );
 
-    window.location.href = `http://localhost:${PORT}/carts/${cartId}`;
+    //window.location.href = `http://localhost:${PORT}/carts/${cartId}`;
 }
 
 function buyPurchase(){
@@ -53,5 +64,21 @@ async function removeProduct(pid){
         cancelPurchase();
     }else{
         location.reload();
+    }
+}
+
+function increaseQuantity(stock){
+    const quantityInput = document.getElementById('quantity-input');
+    let currentValue = parseInt(quantityInput.value);
+    if(currentValue < stock){
+        quantityInput.value = currentValue + 1;
+    }
+}
+
+function decreaseQuantity(){
+    const quantityInput = document.getElementById('quantity-input');
+    let currentValue = parseInt(quantityInput.value);
+    if(currentValue > 1){
+        quantityInput.value = currentValue - 1;
     }
 }

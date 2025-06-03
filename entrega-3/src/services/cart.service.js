@@ -16,25 +16,24 @@ class CartService{
 
     async getById(cid){
         try{
-            return await cartModel.findById(cid).populate("products");
+            return await cartModel.findById(cid).populate("products.product");
         } catch (error) {
             console.error('Error al leer un carrito de compras: ', error);
             throw error;
         }
     }
 
-    async addProduct(cart, product){
+    async addProduct(cart, product, quantity){
         try{
-            cart.products.push(product);
-
+            cart.products.push({product: product, quantity: quantity});
+            
             let total = 0
-            cart.products.forEach(function(product) {
-                total += product.price 
+            cart.products.forEach(function(item) {
+                total += item.product.price;
             });
 
             cart.total = total;
-            
-            return await cartModel.updateOne({_id: cart._id}, cart);
+            await cart.save();
         } catch (error) {
             console.error('Error al agregar un producto al carrito de compras: ', error);
             throw error;

@@ -20,6 +20,7 @@ viewRouter.get('/product/:id', async (req, res) => {
         const { id } = req.params
         const result = await fetch(`http://localhost:${PORT}/api/products/${id}`);
         const product = await result.json();
+        
         res.render("detail", {product, port: PORT});
     } catch (error) {
         console.log(error)
@@ -32,6 +33,7 @@ viewRouter.get('/carts/:id', async (req, res) => {
         const { id } = req.params
         const result = await fetch(`http://localhost:${PORT}/api/carts/${id}`);
         const cart = await result.json();
+        
         res.render("cart", {cart, port: PORT});
     } catch (error) {
         console.log(error)
